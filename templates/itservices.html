@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="products_category">
+    <div class="wrapper">
+    <div class="whatwedoline">
+        <h2>Our IT Services</h2>
+        <p><h4>These are the services provided by us</h4></p>
+    </div>
+    </div>
+    {% for n in itservicecategoryData %}
+    <section id="it_categories" class="it_categories">
+        <div class="row_it_category">
+            <div class="left">
+                <img src="/media/{{n.services_category_img}}" alt="">
+            </div>
+            <div class="right">
+                <div class="content">
+                    <p class="category_title"><h5><b>{{n.services_category_title}}</b></h5></p>
+                    <p>{{n.services_category_desc}}</p>  
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endfor %}
+</main>
+    <main>
+        <div class="wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <h5 style="margin: 0;"><b>Feel free to reach out to us</b> at any time for inquiries or requests regarding <b>these services</b>. <a href="/contact/" class="Product_Link">Click Here to Contact us.</a></h5>
+        </div>
+    </main>
+    <main>
+        <div class="wrapper">
+            <h5 style="margin: 0;"><b><center>OR</center></b></h5>
+        </div>
+    </main>
+    <main>
+        <div class="wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;" id="Whatsappintegration">
+            <h5><b>Directly Contact Us Through Whatsapp</b></h5>
+            <a href="https://wa.me/+918310572400?text=I'm%20interested%20in%20your%20Service%20.%20Can%20I%20have%20more%20details%20" style="text-decoration: none;">
+                <img src="/media/img/WhatsAppButtonGreenLarge.png" alt="" style="width: 100%; max-width: 250px; display: block; height: auto; margin: 10px auto;">
+            </a>
+        </div> 
+    </main>
+{% endblock content %}

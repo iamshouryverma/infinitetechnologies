@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if request.path == '/' %}Infinite Technologies{% elif request.path == '/contact/' %}Contact Us | Infinite Technologies{% elif request.path == '/products/' %}Our Products | Infinite Technologies{% elif request.path == '/products_architecture/' %}Architecture Visualization | Our Products{% elif request.path == '/products_game/' %}Game Assets | Our Products{% elif request.path == '/products_design/' %}Designing | Our Products{% endif %}</title>
+    <link rel="icon" href="/media/logo/titlepic.png" type="image/png">
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        .card {
+        height: 100vh;
+        margin: 0;
+        width: 200px; /* Adjust the width for landscape orientation */
+        height: 100px; /* Adjust the height for landscape orientation */
+        perspective: 1000px;
+        transform-style: preserve-3d;
+        transition: transform 0.9s;
+        }
+
+        .card:hover {
+          transform: rotateY(180deg);
+        }
+
+        .card .face {
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          backface-visibility: hidden;
+        }
+
+        .card .front {
+          transform: rotateY(0deg);
+        }
+
+        .card .back {
+          transform: rotateY(180deg);
+        }
+
+        .card-image {
+          align-items: center;
+          width:fit-content;
+          height: 280%;
+          object-fit: cover;
+        }
+        .contact-form {
+        color: #4e4e4e;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-right: 20px;
+        background-color: #f8f8f8;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .flex-container {
+    display: flex;
+}
+
+.VisitngCard,
+.contact-form {
+    flex: 1;
+    margin-right: 20px; /* Adjust the margin as needed */
+}
+
+/*HEADER*/
+
+
+        .no-underline {
+            text-decoration: none !important;
+        }
+
+        .navbar-title {
+            font-size: 22px;
+            text-decoration: none !important;
+            color: rgb(157, 157, 157);
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            letter-spacing: 1.5px;
+        }
+
+        .nav-item {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        .navbar-title:hover {
+            color: rgb(157, 157, 157);
+            text-decoration: none !important;
+        }
+
+    
+    /* Style form elements */
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+    
+    textarea {
+        resize: vertical; /* Allow vertical resizing of textarea */
+    }
+    @media (max-width: 1000px) {
+        .card{
+            margin-top: -30%;
+            margin-bottom: 50%;
+            margin-left: 5%;
+        }
+        .card-image {
+          align-items: center;
+          width:fit-content;
+          height: 200%;
+          object-fit: cover;
+        }
+
+  .flex-container {
+    flex-direction: column; /* Display flex items in a column for small screens */
+  }.contact-form {
+    margin-right: 0; /* Remove the margin for small screens */
+    width: 100%; /* Make each section take the full width */
+  }
+}
+        </style>  
+</head>
+  <body class="contactuspage">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-title navbar-dark no-underline" href="/">
+                <img src="/media/logo/titlepic.png" alt="" width="30" height="28" class="d-inline-block align-text-top">
+                Infinite Technologies
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                {% for n in headerData %}
+                <li class="nav-item">
+                  <a class="nav-link {% if request.path == '/{{n.navbar_link}}/' %}active{% endif %}" href="/{{n.navbar_link}}/">
+                    <img src="/media/{{ n.navbar_icon }}" alt="" width="30" height="30" style="padding-bottom: 6%; padding-right: 4%;">{{n.navbar_content}}
+                  </a>
+                </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+      </nav>
+    {% if maplocationData %}
+    <iframe src="https://www.google.com/maps/embed?{{ maplocationData.0.map_location }}" width="100%" height="600" style="border:0; padding-top: 20px; padding-bottom: 20px; " allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% endif %}
+    <div class="container">
+        <div class="flex-container">
+            <section class="VisitngCard" style="margin-top: 135px;">
+                <div class="card-container">
+                    <div class="card">
+                        <div class="face front">
+                            <!-- Front of the card - Add your image here -->
+                            <img src="/media/img/1.png" alt="Front Image" class="card-image">
+                        </div>
+                        <div class="face back">
+                            <!-- Back of the card - Add your flipped image here -->
+                            <img src="/media/img/2.png" alt="Flipped Image" class="card-image">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="contact-form">
+                <h2>Contact Us</h2>
+                <form method="post" id="form_id" action="{% url 'thankyou' %}">
+                    {% csrf_token %}
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" autocomplete="off" required>
+    
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" autocomplete="off" required>
+    
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" autocomplete="off" required>
+    
+                    <label for="reason">Reason for Contacting:</label>
+                    <textarea id="reason" name="reason" autocomplete="off" required></textarea>
+                    <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                </form>
+            </section>
+        </div>
+    </div>
+
+    <main>
+        <div class="wrapper">
+            <h5 style="margin: 0;"><b><center>OR</center></b></h5>
+        </div>
+    </main>
+    <main>
+        <div class="wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;" id="Whatsappintegration">
+            <h5><b>Directly Contact Us Through Whatsapp</b></h5>
+            <a href="https://wa.me/+918310572400?text=I'm%20interested%20.%20Can%20I%20have%20more%20details%20" style="text-decoration: none;">
+                <img src="/media/img/WhatsAppButtonGreenLarge.png" alt="" style="width: 100%; max-width: 250px; display: block; height: auto; margin: 10px auto;">
+            </a>
+        </div>           
+    </main>
+    
+
+
+    <footer class="bg-black py-3 mt-5">
+        <div class="container text-light text-center">
+            {% if footerData %}
+            <p class="display-6 mb-3">{{footerData.0.address}}</p> 
+            <small class="text-white-50" >&copy; {{footerData.0.copyright}}</small>
+            {% endif %} 
+        </div>  
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    // Check if the user navigated back to the contact page
+    if (performance.navigation.type === 2) {
+        // Clear the form fields
+        var form = document.getElementById("contact-form");
+        if (form) {
+            form.reset();
+        }
+    }
+});
+
+
+// Clear form fields when the page loads
+window.addEventListener('load', function() {
+    clearFormFields();
+});
+
+// Clear form fields when returning to the page
+window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+        clearFormFields();
+    }
+});
+
+function clearFormFields() {
+    // Replace 'formId' with the actual ID of your form
+    const form = document.getElementById('form_id');
+    if (form) {
+        form.reset();
+    }
+}
+</script>
+<script src="/static/js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>

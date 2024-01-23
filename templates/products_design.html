@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main>
+    <section id="product" class="product">
+        <div class="wrapper">
+            <div class="whatwedoline">
+                <h6><a href="/products/"  class="category-link">Products</a> > <b>Designs</b></h6>
+                <h2>Our Products based on Architecture Visualization</h2>
+            </div>
+            <div class="product-container">
+                {% if designproductcategoryData %}
+                {% for n in designproductcategoryData %}
+                <div class="product-card">
+                    <a href="{{ n.design_external_link }}" target="_blank" rel="noopener noreferrer">
+                        <img src="/media/{{n.design_product_img}}" alt="Product {{forloop.counter}}">
+                        <h3 class="product-title-link"><b>{{n.design_product_title}}</b></h3>
+                        <p class="product-description-no-link-color">{{n.design_product_desc}}</p>
+                    </a>
+                </div>
+                
+                {% endfor %}
+                {% else %}
+                <h5>Our Products Will Be Updated Soon. Sorry for any inconvenience caused.</h5>
+                {% endif %}
+            </div>
+        </div>
+      </section>
+</main>
+<main>
+    <div class="wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <h5 style="margin: 0;"><b>Feel free to reach out to us</b> at any time for inquiries or requests regarding <b>custom 3D models</b>. <a href="/contact/" class="Product_Link">Click Here to Contact us.</a></h5>
+    </div>
+</main>
+<main>
+    <div class="wrapper">
+        <h5 style="margin: 0;"><b><center>OR</center></b></h5>
+    </div>
+</main>
+<main>
+    <div class="wrapper" style="display: flex; flex-direction: column; align-items: center; text-align: center;" id="Whatsappintegration">
+        <h5><b>Directly Contact Us Through Whatsapp</b></h5>
+        <a href="https://wa.me/+918310572400?text=I'm%20interested%20in%20your%20Product%20.%20Can%20I%20have%20more%20details%20" style="text-decoration: none;">
+            <img src="/media/img/WhatsAppButtonGreenLarge.png" alt="" style="width: 100%; max-width: 250px; display: block; height: auto; margin: 10px auto;">
+        </a>
+    </div> 
+</main>
+{% endblock content %}
