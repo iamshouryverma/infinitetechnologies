@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="homepage">
+  <section id="section1">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for n in indexbannerData %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <div class="carousel-inner">
+            {% for n in indexbannerData %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="/media/{{ n.banner_img }}" class="d-block w-100" alt="...">
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+    <div class="col-12">
+      <form method="get">
+        <input type="text" name="servicename" value=""/>
+        <input type="submit" value="Search"/>
+      </form>
+    </div>
+      {% for n in serviceData %}
+      <div class="container">
+        <section id="section2">
+          <h2 class="what">{{n.service_title}}</h2>
+          <p class="whatwedo">{{n.service_desc | upper | safe}}</p>      
+          <div class="col-12">
+            {% if n.service_image != NULL %}
+            <img src="/media/{{n.service_image}}" class="card-img">
+            {% endif %}
+          </div>  
+        </section>
+      </div>
+      {%empty%}
+      No Data Found
+      {% endfor %}
+      <nav aria-label="..." class="container">
+        <ul class="pagination">
+          {% if serviceData.has_previous %}
+          <li class="page-item ">
+            <a class="page-link" href="/?page=1" tabindex="-1" aria-disabled="true">First</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/?page={{serviceData.previous_page_number}}" tabindex="-1" aria-disabled="true">Previous</a>
+          </li>
+          {% endif %}
+          {% for n in totalpagelist %}
+          <li class="page-item"><a class="page-link" href="/?page={{n}}">{{n}}</a></li>
+          {% endfor %}
+          {% if serviceData.has_next  %}
+          <li class="page-item">
+            <a class="page-link" href="/?page={{serviceData.next_page_number}}" >Next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="/?page={{lastpage}}" >Last</a>
+          </li>
+          {% endif %}
+        </ul>
+      </nav>
+</main>
+{% endblock content %}

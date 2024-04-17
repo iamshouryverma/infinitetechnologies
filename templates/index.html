@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% block content %}
+<main class="homepage">
+  <section id="section1">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            {% for n in indexbannerData %}
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %} class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+            {% endfor %}
+        </div>
+
+        <div class="carousel-inner">
+            {% for n in indexbannerData %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                    <img src="/media/{{ n.banner_img }}" class="d-block w-100" alt="...">
+                </div>
+            {% endfor %}
+        </div>
+        {% if indexbannerData|length > 1 %}
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+              </button>
+        {% endif %}
+    </div>
+</section>
+<section id="about" class="about">
+  <div class="wrapper">
+    {% if serviceData %}
+      <div class="whatwedoline">
+          <h2>{{serviceData.0.service_title}}</h2>
+          <h5><span class="colorful-text">{{serviceData.0.service_desc}}</span></h5>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<section id="product" class="product">
+    <div class="wrapper">
+        <div class="whatwedoline">
+            <h2><b>Our Products</b></h2>
+        </div>
+        <div class="product-i-container">
+            {% for n in indexproductData %}
+                <div class="product-i-card">
+                    <a href="{{ n.index_external_link }}" target="_blank" rel="noopener noreferrer">
+                        <div class="product-i-image">
+                            <img src="/media/{{n.index_product_img}}" alt="Product {{forloop.counter}}">
+                        </div>
+                        <h3 class="product-i-title-link"><b>{{n.index_product_title}}</b></h3>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        
+        
+        
+        
+        <h5 style="margin-left: 3.2%;">Browse more of our products.....<a href="/products/" class="Product_Link">Click Here</a></h5>
+    </div>
+  </section>
+  <section id="product" class="product">
+    <div class="wrapper">
+        <div class="whatwedoline">
+            <h2><b>Our IT Services</b></h2>
+        </div>
+        <section id="its_categories" class="its_categories">
+            <div class="row_its_category">
+                <div class="right">
+                    <div class="content">
+                        <img src="/media/productimg/sales_service.jpg" alt="">
+                        <p class="category_title"><h3><b>Laptop & Desktop - Sales and Services</b></h3></p>
+                        <p>Explore a world of reliability and performance with our laptop and desktop sales and services. From cutting-edge devices to expert maintenance, we've got your technology needs covered, ensuring seamless functionality and satisfaction in every purchase and service.</p>  
+                    </div>
+                </div>
+            </div>
+            <div class="row_its_category">
+                <div class="right">
+                    <div class="content">
+                        <img src="/media/productimg/kate-trysh-Dnkr_lmdKi8-unsplash.jpg" alt="">
+                        <p class="category_title"><h3><b>Banner, Hoarding Desiging</b></h3></p>
+                        <p>Elevate your brand with captivating visuals. Our banner designs are crafted to leave a lasting impression, blending creativity and impact to communicate your message effectively.</p>  
+                    </div>
+                </div>
+            </div>
+            <div class="row_its_category">
+                <div class="right">
+                    <div class="content">
+                        <img src="/media/img/website-styles-menu-extended-min.png" alt="" id="ITservices">
+                        <p class="category_title"><h3><b>Website Desiging and Deploying</b></h3></p>
+                        <p>Turn your vision into reality with our website design and deployment services. We create, optimize, and launch websites to help you establish a strong online presence effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row_its_category">
+                <div class="right">
+                    <div class="content">
+                        <img src="/media/productimg/nick-loggie-fRVPzBYcd5A-unsplash.jpg" alt="">
+                        <p class="category_title"><h3><b>CCTV or Network Booster Installation</b></h3></p>
+                        <p>CCTV installation ensures strategic camera placement for surveillance, while network booster installation enhances wireless signals for improved connectivity.</p>  
+                    </div>
+                </div>
+            </div>
+            <h5 style="margin-left: 3.2%;">To get a better clarity about our services, please <a href="/itservices
+                /" class="Product_Link">click here</a> and go through our Services Page</h5>
+    </section>
+    </div>
+  </section>
+  <section id="product" class="product">
+    <div class="wrapper">
+        {% if whyData %}
+      <div class="whatwedoline">
+          <h2>{{whyData.0.why_title}}</h2>
+          <h5><span class="colorful-text">{{whyData.0.why_desc}}</span></h5>
+      </div>
+    {% endif %}
+    </div>
+  </section>
+</main>
+{% endblock content %}

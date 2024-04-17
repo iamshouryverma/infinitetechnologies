@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You!</title>
+    <style>
+        /* Add your CSS styling here */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            padding: 50px;
+        }
+
+        .thank-you-container {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #54b5f1;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .back-to-home {
+            margin-top: 20px;
+            text-decoration: none;
+            color: #54b5f1;
+            font-weight: bold;
+        }
+        img{
+            width: 90px;
+            height: 90px;
+        }
+    </style>
+</head>
+<body>
+    <div class="thank-you-container">
+        <img src="/media/img/tickpng..png">
+        <h1>Thank You! {{data}}</h1>
+        <p>Your message has been successfully submitted.</p>
+        <p style="color:red; font-weight: bold;">Please don't go back at this Stage</p>
+    </div>
+    <script>
+        // Redirect back to the contact page after 3 seconds
+        setTimeout(function () {
+            window.location.href = "/contact/";
+        }, 3000);  // 3000 milliseconds (3 seconds)
+    </script>
+</body>
+</html>
